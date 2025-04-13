@@ -5,13 +5,11 @@ from discord import app_commands
 from keep_alive import keep_alive
 import os
 
-# ======================== CONFIG ========================
 TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 GUILD_ID = 1200797806940659752
 ADMIN_CHANNEL_ID = 1200802706156158996
 ADMIN_ID = 1351933535627378719
 ROLE_ID = 1360969155708190771
-# ========================================================
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -46,12 +44,11 @@ class ApproveView(discord.ui.View):
             return await interaction.response.send_message("❌ มึงไม่ใช่แอดมิน", ephemeral=True)
         try:
             await self.user.send(
-    "❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`\n\n"
-    "📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎"
-)
+                "❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`
 
-
-📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎")
+"
+                "📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎"
+            )
             await interaction.response.send_message(f"📨 แจ้ง {self.user.mention} แล้ว", ephemeral=True)
         except discord.Forbidden:
             await interaction.response.send_message("⚠️ ส่ง DM ไม่ได้", ephemeral=True)
@@ -67,11 +64,13 @@ class GroomingModal(discord.ui.Modal, title="📛 สมัครยศ Kai Groo
         super().__init__()
         self.user = user
     async def on_submit(self, interaction: discord.Interaction):
-        embed = discord.Embed(title="✂️ คำตอบจากผู้ใช้",
-                              description=f"**จาก:** {self.user.mention}
+        embed = discord.Embed(
+            title="✂️ คำตอบจากผู้ใช้",
+            description=f"**จาก:** {self.user.mention}
 
 ```{self.answer.value}```",
-                              color=discord.Color.orange())
+            color=discord.Color.orange()
+        )
         view = ApproveView(self.user)
         channel = bot.get_channel(ADMIN_CHANNEL_ID)
         if not channel:
