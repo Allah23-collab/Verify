@@ -1,4 +1,3 @@
-
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -44,9 +43,7 @@ class ApproveView(discord.ui.View):
             return await interaction.response.send_message("❌ มึงไม่ใช่แอดมิน", ephemeral=True)
         try:
             await self.user.send(
-                "❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`
-
-"
+                "❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`\n\n"
                 "📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎"
             )
             await interaction.response.send_message(f"📨 แจ้ง {self.user.mention} แล้ว", ephemeral=True)
@@ -66,9 +63,7 @@ class GroomingModal(discord.ui.Modal, title="📛 สมัครยศ Kai Groo
     async def on_submit(self, interaction: discord.Interaction):
         embed = discord.Embed(
             title="✂️ คำตอบจากผู้ใช้",
-            description=f"**จาก:** {self.user.mention}
-
-```{self.answer.value}```",
+            description=f"**จาก:** {self.user.mention}\n\n```{self.answer.value}```",
             color=discord.Color.orange()
         )
         view = ApproveView(self.user)
@@ -85,7 +80,7 @@ class FormButtonView(discord.ui.View):
     @discord.ui.button(label="📝 กรอกฟอร์มสมัครยศ", style=discord.ButtonStyle.primary)
     async def open_form(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user.id != self.user.id:
-            return await interaction.response.send_message("❌ มึงไม่ใช่เจ้าของปุ่มนี้", ephemeral=True)
+            return await interaction.response.send_message("❌ ปุ่มนี้ไม่ใช่ของมึง", ephemeral=True)
         await interaction.response.send_modal(GroomingModal(self.user))
 
 @tree.command(name="grooming", description="สมัครยศ Kai Grooming Fc", guild=discord.Object(id=GUILD_ID))
