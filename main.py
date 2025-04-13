@@ -10,7 +10,7 @@ TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
 GUILD_ID = 1200797806940659752
 ADMIN_CHANNEL_ID = 1200802706156158996
 ADMIN_ID = 1351933535627378719
-ROLE_ID = 1200832835688697886
+ROLE_ID = 1360969155708190771
 # ========================================================
 
 intents = discord.Intents.default()
