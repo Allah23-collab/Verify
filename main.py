@@ -45,7 +45,11 @@ class ApproveView(discord.ui.View):
         if interaction.user.id != ADMIN_ID:
             return await interaction.response.send_message("❌ มึงไม่ใช่แอดมิน", ephemeral=True)
         try:
-            await self.user.send("❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`
+            await self.user.send(
+    "❌ คำตอบของมึงยังไม่ผ่าน ลองใหม่ด้วย `/grooming`\n\n"
+    "📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎"
+)
+
 
 📌 ตอบให้ดูจริงใจหน่อยนะเว้ย 😎")
             await interaction.response.send_message(f"📨 แจ้ง {self.user.mention} แล้ว", ephemeral=True)
