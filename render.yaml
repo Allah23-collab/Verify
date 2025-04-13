@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: kai-grooming-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        value: ใส่_TOKEN_ของมึงตรงนี้_ตอนสร้างบน_Render
